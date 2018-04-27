@@ -11,7 +11,9 @@ import PropTypes from 'prop-types'
  * @param width 宽度
  * @param height 高度
  * @param canMinus 是否允许负数 默认true
- * @param maxNumber 最大数字*/
+ * @param maxNumber 最大数字
+ * @param fontSize 字体大小
+ * @param value 当前数值*/
 export default class SFNumberPicker extends Component{
     static propTypes = {
         tag:PropTypes.string,
@@ -21,20 +23,27 @@ export default class SFNumberPicker extends Component{
         height:PropTypes.number,
         canMinus:PropTypes.bool,
         maxNumber:PropTypes.number,
-        fontSize:PropTypes.number
+        fontSize:PropTypes.number,
+        value:PropTypes.number
     }
     static defaultProps={
         tag:'numberPicker',
         width:90,
         height:30,
         canMinus:true,
-        fontSize:12
+        fontSize:12,
+        value:0
     }
     constructor(props) {
         super(props)
         this.state={
             number:0
         }
+    }
+    componentWillMount(){
+        this.setState({
+            number:this.props.value
+        })
     }
 
     render() {
